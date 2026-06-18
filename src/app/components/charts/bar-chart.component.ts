@@ -16,15 +16,15 @@ interface TooltipData {
     <div class="relative w-full h-full bg-white dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-slate-300 dark:hover:border-slate-700/80 shadow-xs">
       <div class="flex justify-between items-center mb-6">
         <div>
-          <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200 transition-colors duration-300">Asset Distribution</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">Purchase valuation grouped by category</p>
+          <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200 transition-colors duration-300">Distribución de Activos</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">Valoración de compra agrupada por categoría</p>
         </div>
       </div>
 
       <div class="relative flex-1 min-h-[220px] w-full" #chartContainer>
         @if (bars().length === 0) {
           <div class="flex flex-col items-center justify-center h-full text-slate-400 dark:text-slate-500 text-sm">
-            No assets available to chart.
+            No hay activos disponibles para graficar.
           </div>
         } @else {
           <svg viewBox="0 0 500 300" class="w-full h-full select-none" preserveAspectRatio="xMidYMid meet">
@@ -114,11 +114,11 @@ interface TooltipData {
             >
               <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-0.5">{{ data.category }}</div>
               <div class="flex items-center gap-2">
-                <span class="text-slate-500 dark:text-slate-400">Total Value:</span>
+                <span class="text-slate-500 dark:text-slate-400">Valor Total:</span>
                 <span class="font-mono text-slate-800 dark:text-slate-200">{{ data.formattedValue }}</span>
               </div>
               <div class="flex items-center gap-2 mt-0.5 text-[10px] text-slate-500 dark:text-slate-400">
-                <span>Assets Count:</span>
+                <span>Cantidad de Activos:</span>
                 <span class="font-mono font-medium text-slate-700 dark:text-slate-300">{{ data.count }}</span>
               </div>
             </div>
@@ -150,7 +150,7 @@ export class BarChartComponent {
     const groups: Record<string, { total: number; count: number }> = {};
 
     for (const asset of list) {
-      const cat = asset.category || 'Unassigned';
+      const cat = asset.category || 'Sin Asignar';
       if (!groups[cat]) {
         groups[cat] = { total: 0, count: 0 };
       }

@@ -42,12 +42,12 @@ describe('BarChartComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display "No assets available to chart." when assets input is empty', () => {
+  it('should display "No hay activos disponibles para graficar." when assets input is empty', () => {
     fixture.componentRef.setInput('assets', []);
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).toContain('No assets available to chart.');
+    expect(compiled.textContent).toContain('No hay activos disponibles para graficar.');
     expect(compiled.querySelector('svg')).toBeNull();
   });
 
@@ -58,7 +58,7 @@ describe('BarChartComponent', () => {
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).not.toContain('No assets available to chart.');
+    expect(compiled.textContent).not.toContain('No hay activos disponibles para graficar.');
     
     const svg = compiled.querySelector('svg');
     expect(svg).toBeTruthy();

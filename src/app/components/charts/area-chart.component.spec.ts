@@ -42,12 +42,12 @@ describe('AreaChartComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display "No assets available to calculate trajectory." when assets is empty', () => {
+  it('should display "No hay activos disponibles para calcular la trayectoria." when assets is empty', () => {
     fixture.componentRef.setInput('assets', []);
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).toContain('No assets available to calculate trajectory.');
+    expect(compiled.textContent).toContain('No hay activos disponibles para calcular la trayectoria.');
     expect(compiled.querySelector('svg')).toBeNull();
   });
 
@@ -58,7 +58,7 @@ describe('AreaChartComponent', () => {
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).not.toContain('No assets available to calculate trajectory.');
+    expect(compiled.textContent).not.toContain('No hay activos disponibles para calcular la trayectoria.');
 
     const svg = compiled.querySelector('svg');
     expect(svg).toBeTruthy();

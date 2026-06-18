@@ -14,10 +14,10 @@ import { Asset, Currency } from '../../models/asset.model';
         <div class="flex justify-between items-center px-6 py-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/40 transition-colors duration-300">
           <div>
             <h3 class="text-lg font-bold text-slate-850 dark:text-slate-200 transition-colors duration-300">
-              {{ isEditing() ? 'Modify Asset Details' : 'Register New Asset' }}
+              {{ isEditing() ? 'Modificar Detalles del Activo' : 'Registrar Nuevo Activo' }}
             </h3>
             <p class="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">
-              Fill in the parameters below. Values in {{ selectedCurrency() }}.
+              Complete los parámetros a continuación. Valores expresados en {{ selectedCurrency() }}.
             </p>
           </div>
           <button
@@ -35,11 +35,11 @@ import { Asset, Currency } from '../../models/asset.model';
           
           <!-- Name Field -->
           <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Asset Name *</label>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Nombre del Activo *</label>
             <input
               type="text"
               formControlName="name"
-              placeholder="e.g. MacBook Pro M4 Max"
+              placeholder="ej. MacBook Pro M4 Max"
               class="w-full bg-slate-50 dark:bg-slate-950 border text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none rounded-xl px-4 py-2.5 text-sm transition-all duration-300"
               [class.border-slate-200]="!hasError('name')"
               [class.dark:border-slate-800]="!hasError('name')"
@@ -49,7 +49,7 @@ import { Asset, Currency } from '../../models/asset.model';
               [class.focus:border-rose-500]="hasError('name')"
             />
             @if (hasError('name')) {
-              <span class="text-xs text-rose-500 mt-1 block">Asset name is required (min 2 chars).</span>
+              <span class="text-xs text-rose-500 mt-1 block">El nombre del activo es requerido (mínimo 2 caracteres).</span>
             }
           </div>
 
@@ -57,23 +57,23 @@ import { Asset, Currency } from '../../models/asset.model';
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Type -->
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Asset Type *</label>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Tipo de Activo *</label>
               <select
                 formControlName="type"
                 class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:border-slate-300 dark:focus:border-slate-700 rounded-xl px-4 py-2.5 text-sm transition-all duration-300 cursor-pointer"
               >
-                <option value="physical">Physical Asset</option>
-                <option value="non-physical">Digital/Intellectual</option>
+                <option value="physical">Activo Físico</option>
+                <option value="non-physical">Digital / Intelectual</option>
               </select>
             </div>
 
             <!-- Category -->
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Category *</label>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Categoría *</label>
               <input
                 type="text"
                 formControlName="category"
-                placeholder="e.g. Hardware, Software"
+                placeholder="ej. Hardware, Software"
                 class="w-full bg-slate-50 dark:bg-slate-950 border text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none rounded-xl px-4 py-2.5 text-sm transition-all duration-300"
                 [class.border-slate-200]="!hasError('category')"
                 [class.dark:border-slate-800]="!hasError('category')"
@@ -83,7 +83,7 @@ import { Asset, Currency } from '../../models/asset.model';
                 [class.focus:border-rose-500]="hasError('category')"
               />
               @if (hasError('category')) {
-                <span class="text-xs text-rose-500 mt-1 block">Category is required.</span>
+                <span class="text-xs text-rose-500 mt-1 block">La categoría es requerida.</span>
               }
             </div>
           </div>
@@ -92,7 +92,7 @@ import { Asset, Currency } from '../../models/asset.model';
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Purchase Date -->
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Acquisition Date *</label>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Fecha de Adquisición *</label>
               <input
                 type="date"
                 formControlName="purchaseDate"
@@ -105,17 +105,17 @@ import { Asset, Currency } from '../../models/asset.model';
                 [class.focus:border-rose-500]="hasError('purchaseDate')"
               />
               @if (hasError('purchaseDate')) {
-                <span class="text-xs text-rose-500 mt-1 block">Acquisition date is required.</span>
+                <span class="text-xs text-rose-500 mt-1 block">La fecha de adquisición es requerida.</span>
               }
             </div>
 
             <!-- Useful Life -->
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Useful Life (Years) *</label>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Vida Útil (Anual) *</label>
               <input
                 type="number"
                 formControlName="usefulLife"
-                placeholder="e.g. 5"
+                placeholder="ej. 5"
                 class="w-full bg-slate-50 dark:bg-slate-950 border text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none rounded-xl px-4 py-2.5 text-sm transition-all duration-300"
                 [class.border-slate-200]="!hasError('usefulLife')"
                 [class.dark:border-slate-800]="!hasError('usefulLife')"
@@ -125,7 +125,7 @@ import { Asset, Currency } from '../../models/asset.model';
                 [class.focus:border-rose-500]="hasError('usefulLife')"
               />
               @if (hasError('usefulLife')) {
-                <span class="text-xs text-rose-500 mt-1 block">Must be a positive integer greater than 0.</span>
+                <span class="text-xs text-rose-500 mt-1 block">Debe ser un número entero mayor a 0.</span>
               }
             </div>
           </div>
@@ -135,7 +135,7 @@ import { Asset, Currency } from '../../models/asset.model';
             <!-- Purchase Value -->
             <div>
               <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                Purchase Value ({{ selectedCurrency() }}) *
+                Valor de Compra ({{ selectedCurrency() }}) *
               </label>
               <input
                 type="number"
@@ -150,14 +150,14 @@ import { Asset, Currency } from '../../models/asset.model';
                 [class.focus:border-rose-500]="hasError('purchaseValue')"
               />
               @if (hasError('purchaseValue')) {
-                <span class="text-xs text-rose-500 mt-1 block">Must be a valid positive number.</span>
+                <span class="text-xs text-rose-500 mt-1 block">Debe ser un número positivo válido.</span>
               }
             </div>
 
             <!-- Residual Value -->
             <div>
               <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                Residual Value ({{ selectedCurrency() }}) *
+                Valor Residual ({{ selectedCurrency() }}) *
               </label>
               <input
                 type="number"
@@ -172,7 +172,7 @@ import { Asset, Currency } from '../../models/asset.model';
                 [class.focus:border-rose-500]="hasError('residualValue')"
               />
               @if (hasError('residualValue')) {
-                <span class="text-xs text-rose-500 mt-1 block">Must be a valid positive number.</span>
+                <span class="text-xs text-rose-500 mt-1 block">Debe ser un número positivo válido.</span>
               }
             </div>
           </div>
@@ -180,34 +180,34 @@ import { Asset, Currency } from '../../models/asset.model';
           <!-- Cross-Field Validation Error -->
           @if (form.errors?.['residualExceedsPurchase'] && form.get('residualValue')?.touched) {
             <div class="p-3.5 bg-rose-500/10 border border-rose-500/25 rounded-xl text-xs text-rose-600 dark:text-rose-400 transition-colors duration-300">
-              ⚠️ Valuation Error: Residual value cannot exceed the asset purchase value.
+              ⚠️ Error de Valoración: El valor residual no puede superar al valor de compra del activo.
             </div>
           }
 
           <!-- Physical-Only Fields -->
           @if (form.get('type')?.value === 'physical') {
             <div class="border-t border-slate-200 dark:border-slate-800/60 pt-4 space-y-4 animate-fade-in transition-colors duration-300">
-              <h4 class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Physical Asset Context</h4>
+              <h4 class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Datos del Activo Físico</h4>
               
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Serial Number -->
                 <div>
-                  <label class="block text-xs font-medium text-slate-550 dark:text-slate-400 mb-1">Serial Number</label>
+                  <label class="block text-xs font-medium text-slate-550 dark:text-slate-400 mb-1">Número de Serie</label>
                   <input
                     type="text"
                     formControlName="serialNumber"
-                    placeholder="e.g. SN-88291"
+                    placeholder="ej. SN-88291"
                     class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-slate-300 dark:focus:border-slate-700 rounded-xl px-4 py-2.5 text-sm transition-all duration-300"
                   />
                 </div>
 
                 <!-- Location -->
                 <div>
-                  <label class="block text-xs font-medium text-slate-550 dark:text-slate-400 mb-1">Storage Location</label>
+                  <label class="block text-xs font-medium text-slate-550 dark:text-slate-400 mb-1">Ubicación de Almacenamiento</label>
                   <input
                     type="text"
                     formControlName="location"
-                    placeholder="e.g. Warehouse 3B"
+                    placeholder="ej. Depósito 3B"
                     class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-850 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-slate-300 dark:focus:border-slate-700 rounded-xl px-4 py-2.5 text-sm transition-all duration-300"
                   />
                 </div>
@@ -223,7 +223,7 @@ import { Asset, Currency } from '../../models/asset.model';
             (click)="cancel.emit()"
             class="px-4 py-2.5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 rounded-xl transition-all duration-300 cursor-pointer"
           >
-            Cancel
+            Cancelar
           </button>
           
           <button
@@ -243,7 +243,7 @@ import { Asset, Currency } from '../../models/asset.model';
             [class.hover:scale-[1.02]]="form.valid"
             [class.active:scale-[0.98]]="form.valid"
           >
-            Save Asset
+            Guardar Activo
           </button>
         </div>
 

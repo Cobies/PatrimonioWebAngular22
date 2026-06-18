@@ -15,7 +15,7 @@ import { AuthService } from '../../services/auth.service';
             PatrimonioWeb
           </h2>
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-            Sign in to manage corporate assets
+            Iniciar sesión para gestionar los activos corporativos
           </p>
         </div>
 
@@ -28,7 +28,7 @@ import { AuthService } from '../../services/auth.service';
 
           <div>
             <label for="username" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
-              Username
+              Usuario
             </label>
             <input
               type="text"
@@ -37,13 +37,13 @@ import { AuthService } from '../../services/auth.service';
               [(ngModel)]="username"
               required
               class="w-full px-4 py-3 rounded-lg border border-slate-300/60 dark:border-slate-700/50 bg-white/50 dark:bg-slate-950/40 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500/80 focus:border-transparent transition duration-200"
-              placeholder="Enter username"
+              placeholder="Ingresar usuario"
             />
           </div>
 
           <div>
             <label for="password" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
-              Password
+              Contraseña
             </label>
             <input
               type="password"
@@ -60,7 +60,7 @@ import { AuthService } from '../../services/auth.service';
             type="submit"
             class="w-full py-3 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold text-sm shadow-md hover:shadow-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 transition-all duration-200 cursor-pointer"
           >
-            Sign In
+            Iniciar Sesión
           </button>
         </form>
       </div>
@@ -87,12 +87,12 @@ export class LoginComponent {
     this.errorMessage.set(null);
 
     if (!this.username.trim()) {
-      this.errorMessage.set('Username is required');
+      this.errorMessage.set('El usuario es requerido');
       return;
     }
 
     if (!this.password) {
-      this.errorMessage.set('Password is required');
+      this.errorMessage.set('La contraseña es requerida');
       return;
     }
 
@@ -100,7 +100,7 @@ export class LoginComponent {
     if (success) {
       this.router.navigate(['/']);
     } else {
-      this.errorMessage.set('Invalid username or password');
+      this.errorMessage.set('Usuario o contraseña inválidos');
     }
   }
 }

@@ -41,7 +41,7 @@ describe('LoginComponent', () => {
     component.password = 'some-password';
     component.onSubmit();
 
-    expect(component.errorMessage()).toBe('Username is required');
+    expect(component.errorMessage()).toBe('El usuario es requerido');
     expect(mockAuthService.login).not.toHaveBeenCalled();
   });
 
@@ -50,7 +50,7 @@ describe('LoginComponent', () => {
     component.password = '';
     component.onSubmit();
 
-    expect(component.errorMessage()).toBe('Password is required');
+    expect(component.errorMessage()).toBe('La contraseña es requerida');
     expect(mockAuthService.login).not.toHaveBeenCalled();
   });
 
@@ -73,7 +73,7 @@ describe('LoginComponent', () => {
     component.password = 'wrong';
     component.onSubmit();
 
-    expect(component.errorMessage()).toBe('Invalid username or password');
+    expect(component.errorMessage()).toBe('Usuario o contraseña inválidos');
     expect(mockAuthService.login).toHaveBeenCalledWith('wrong', 'wrong');
     expect(mockRouter.navigate).not.toHaveBeenCalled();
   });

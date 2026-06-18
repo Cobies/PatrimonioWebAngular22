@@ -33,17 +33,17 @@ describe('DepreciationService', () => {
     });
 
     it('should throw an error if useful life is less than or equal to 0', () => {
-      expect(() => service.calculateYearly(10000, 2000, 0)).toThrowError('Useful life must be greater than 0');
-      expect(() => service.calculateYearly(10000, 2000, -5)).toThrowError('Useful life must be greater than 0');
+      expect(() => service.calculateYearly(10000, 2000, 0)).toThrowError('La vida útil debe ser mayor a 0');
+      expect(() => service.calculateYearly(10000, 2000, -5)).toThrowError('La vida útil debe ser mayor a 0');
     });
 
     it('should throw an error if residual value exceeds purchase value', () => {
-      expect(() => service.calculateYearly(5000, 6000, 5)).toThrowError('Residual value cannot exceed purchase value');
+      expect(() => service.calculateYearly(5000, 6000, 5)).toThrowError('El valor residual no puede exceder el valor de compra');
     });
 
     it('should throw an error if purchase value or residual value is negative', () => {
-      expect(() => service.calculateYearly(-1000, 200, 5)).toThrowError('Purchase value and residual value cannot be negative');
-      expect(() => service.calculateYearly(1000, -200, 5)).toThrowError('Purchase value and residual value cannot be negative');
+      expect(() => service.calculateYearly(-1000, 200, 5)).toThrowError('El valor de compra y el valor residual no pueden ser negativos');
+      expect(() => service.calculateYearly(1000, -200, 5)).toThrowError('El valor de compra y el valor residual no pueden ser negativos');
     });
   });
 
@@ -81,8 +81,8 @@ describe('DepreciationService', () => {
     });
 
     it('should throw an error on invalid inputs in getTrajectory', () => {
-      expect(() => service.getTrajectory(1000, 2000, 5)).toThrowError('Residual value cannot exceed purchase value');
-      expect(() => service.getTrajectory(1000, 200, 0)).toThrowError('Useful life must be greater than 0');
+      expect(() => service.getTrajectory(1000, 2000, 5)).toThrowError('El valor residual no puede exceder el valor de compra');
+      expect(() => service.getTrajectory(1000, 200, 0)).toThrowError('La vida útil debe ser mayor a 0');
     });
   });
 });

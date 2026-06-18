@@ -62,13 +62,13 @@ export class DepreciationService {
    */
   private validateInputs(purchaseValue: number, residualValue: number, usefulLife: number): void {
     if (usefulLife <= 0) {
-      throw new Error('Useful life must be greater than 0');
+      throw new Error('La vida útil debe ser mayor a 0');
     }
     if (residualValue > purchaseValue) {
-      throw new Error('Residual value cannot exceed purchase value');
+      throw new Error('El valor residual no puede exceder el valor de compra');
     }
     if (purchaseValue < 0 || residualValue < 0) {
-      throw new Error('Purchase value and residual value cannot be negative');
+      throw new Error('El valor de compra y el valor residual no pueden ser negativos');
     }
   }
 }

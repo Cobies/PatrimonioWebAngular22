@@ -27,7 +27,7 @@ import { AuthService } from '../../services/auth.service';
           (click)="toggleTheme()"
           type="button"
           class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-hidden transition-colors duration-200 cursor-pointer"
-          title="Toggle color theme"
+          title="Cambiar tema de color"
         >
           @if (themeService.selectedTheme() === 'dark') {
             <!-- Sun Icon -->
@@ -48,8 +48,8 @@ import { AuthService } from '../../services/auth.service';
         <!-- Profile & Logout Group -->
         <div class="flex items-center gap-3">
           <div class="flex flex-col text-right">
-            <span class="text-sm font-semibold text-slate-800 dark:text-white">Admin User</span>
-            <span class="text-xs text-slate-400 dark:text-slate-500">Administrator</span>
+            <span class="text-sm font-semibold text-slate-800 dark:text-white">Usuario Admin</span>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Administrador</span>
           </div>
           <!-- Avatar Placeholder -->
           <div class="w-9 h-9 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-sm border border-blue-200 dark:border-blue-800">
@@ -60,7 +60,7 @@ import { AuthService } from '../../services/auth.service';
             (click)="logout()"
             type="button"
             class="p-2 rounded-lg text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/20 focus:outline-hidden transition-colors duration-200 cursor-pointer"
-            title="Log out"
+            title="Cerrar sesión"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
@@ -87,11 +87,15 @@ export class NavbarComponent {
   readonly activeRoute = computed(() => {
     const url = this.router.url;
     if (!url || url === '/' || url === '/dashboard') {
-      return 'dashboard';
+      return 'Panel de Control';
     }
     const cleanUrl = url.split('?')[0].split('#')[0];
     const segments = cleanUrl.split('/').filter(Boolean);
-    return segments[segments.length - 1] || 'dashboard';
+    const lastSegment = segments[segments.length - 1] || 'dashboard';
+    if (lastSegment === 'catalog') {
+      return 'Catálogo';
+    }
+    return lastSegment;
   });
 
   toggleTheme(): void {

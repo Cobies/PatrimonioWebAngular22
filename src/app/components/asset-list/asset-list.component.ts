@@ -9,8 +9,8 @@ import { Asset, Currency } from '../../models/asset.model';
       <!-- Search & Filters Header -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 transition-colors duration-300">Asset Catalog</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">Total: {{ assets().length }} assets registered</p>
+          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 transition-colors duration-300">Catálogo de Activos</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">Total: {{ assets().length }} activos registrados</p>
         </div>
         
         <div class="flex flex-wrap items-center gap-3">
@@ -18,7 +18,7 @@ import { Asset, Currency } from '../../models/asset.model';
           <div class="relative w-full sm:w-auto">
             <input
               type="text"
-              placeholder="Search assets..."
+              placeholder="Buscar activos..."
               [value]="searchText()"
               (input)="onSearchInput($event)"
               class="w-full sm:w-64 bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-hidden focus:border-slate-300 dark:focus:border-slate-700 focus:ring-1 focus:ring-slate-300 dark:focus:ring-slate-700 rounded-xl px-4 py-2.5 pl-10 text-sm transition-all duration-300"
@@ -47,7 +47,7 @@ import { Asset, Currency } from '../../models/asset.model';
               class="w-full sm:w-auto bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 focus:outline-hidden focus:border-slate-300 dark:focus:border-slate-700 focus:ring-1 focus:ring-slate-300 dark:focus:ring-slate-700 rounded-xl px-3.5 py-2.5 text-sm transition-all duration-300 cursor-pointer appearance-none pr-8"
             >
               @for (cat of categories(); track cat) {
-                <option [value]="cat">{{ cat }}</option>
+                <option [value]="cat">{{ cat === 'Todos' ? 'Todos los rubros' : cat }}</option>
               }
             </select>
             <svg
@@ -68,20 +68,20 @@ import { Asset, Currency } from '../../models/asset.model';
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40 text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider transition-colors duration-300">
-              <th class="py-4 px-5">Name & Type</th>
-              <th class="py-4 px-5">Category</th>
-              <th class="py-4 px-5">Acquisition</th>
-              <th class="py-4 px-5 text-right">Cost ({{ selectedCurrency() }})</th>
+              <th class="py-4 px-5">Nombre y Tipo</th>
+              <th class="py-4 px-5">Categoría</th>
+              <th class="py-4 px-5">Adquisición</th>
+              <th class="py-4 px-5 text-right">Costo ({{ selectedCurrency() }})</th>
               <th class="py-4 px-5 text-right">Residual ({{ selectedCurrency() }})</th>
-              <th class="py-4 px-5 text-center">Life (Yrs)</th>
-              <th class="py-4 px-5 text-center">Actions</th>
+              <th class="py-4 px-5 text-center">Vida Útil (Años)</th>
+              <th class="py-4 px-5 text-center">Acciones</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-200 dark:divide-slate-800/60 text-slate-600 dark:text-slate-300 text-sm transition-colors duration-300">
             @if (filteredAssets().length === 0) {
               <tr>
                 <td colspan="7" class="py-12 text-center text-slate-400 dark:text-slate-500 transition-colors duration-300">
-                  No assets found matching the criteria.
+                  No se encontraron activos que coincidan con la búsqueda.
                 </td>
               </tr>
             } @else {
@@ -96,7 +96,7 @@ import { Asset, Currency } from '../../models/asset.model';
                       <div class="flex items-center gap-2 mt-1">
                         @if (asset.type === 'physical') {
                           <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 dark:border-emerald-500/20 transition-colors duration-300">
-                            Physical
+                            Físico
                           </span>
                         } @else {
                           <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 dark:border-indigo-500/20 transition-colors duration-300">
@@ -145,7 +145,7 @@ import { Asset, Currency } from '../../models/asset.model';
                     <div class="flex items-center justify-center gap-3">
                       <button
                         (click)="editAsset.emit(asset)"
-                        title="Edit Asset"
+                        title="Editar Activo"
                         class="p-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/50 hover:bg-indigo-500/10 hover:border-indigo-500/30 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 cursor-pointer"
                       >
                         <svg
@@ -164,7 +164,7 @@ import { Asset, Currency } from '../../models/asset.model';
                       </button>
                       <button
                         (click)="deleteAsset.emit(asset.id)"
-                        title="Delete Asset"
+                        title="Eliminar Activo"
                         class="p-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/50 hover:bg-rose-500/10 hover:border-rose-500/30 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition-all duration-300 cursor-pointer"
                       >
                         <svg
@@ -207,13 +207,13 @@ export class AssetListComponent {
   readonly deleteAsset = output<string>();
 
   searchText = signal<string>('');
-  selectedCategory = signal<string>('All');
+  selectedCategory = signal<string>('Todos');
 
   // Compute unique list of categories for the filter select
   categories = computed(() => {
     const list = this.assets();
     const unique = new Set(list.map(a => a.category).filter(Boolean));
-    return ['All', ...Array.from(unique).sort()];
+    return ['Todos', ...Array.from(unique).sort()];
   });
 
   // Compute the list of assets after search and category filtering
@@ -231,7 +231,7 @@ export class AssetListComponent {
       );
     }
 
-    if (cat !== 'All') {
+    if (cat !== 'Todos') {
       list = list.filter(a => a.category === cat);
     }
 

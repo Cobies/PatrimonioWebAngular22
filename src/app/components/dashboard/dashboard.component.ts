@@ -26,10 +26,10 @@ import { AreaChartComponent } from '../charts/area-chart.component';
             </div>
             <div>
               <h1 class="text-xl md:text-2xl font-extrabold text-slate-800 dark:text-white">
-                Corporate Asset Manager
+                Gestor de Activos Corporativos
               </h1>
               <p class="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide">
-                Active Valuation & Straight-Line Depreciation Console
+                Consola de Valoración Activa y Amortización Lineal
               </p>
             </div>
           </div>
@@ -63,39 +63,39 @@ import { AreaChartComponent } from '../charts/area-chart.component';
       <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- KPI 1: Active Count -->
         <div class="bg-white dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-300/80 dark:hover:border-slate-700/60 shadow-xs">
-          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Asset Inventory</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Inventario de Activos</span>
           <div class="flex items-baseline gap-2 mt-4">
             <span class="text-3xl font-extrabold text-slate-900 dark:text-slate-100 font-mono">{{ assetsCount() }}</span>
-            <span class="text-xs text-slate-400 dark:text-slate-500">active items</span>
+            <span class="text-xs text-slate-400 dark:text-slate-500">ítems activos</span>
           </div>
-          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Physical and digital assets tracked</p>
+          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Bienes físicos y digitales registrados</p>
         </div>
 
         <!-- KPI 2: Total Acquisition Cost -->
         <div class="bg-white dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-300/80 dark:hover:border-slate-700/60 shadow-xs">
-          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Capital Cost</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Costo de Capital Total</span>
           <div class="flex items-baseline gap-1 mt-4">
             <span class="text-3xl font-extrabold text-slate-900 dark:text-slate-100 font-mono">{{ totalAcquisitionCost() }}</span>
           </div>
-          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Sum of original purchase costs</p>
+          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Suma de los costos originales de compra</p>
         </div>
 
         <!-- KPI 3: Accumulated Depreciation -->
         <div class="bg-white dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-300/80 dark:hover:border-slate-700/60 shadow-xs">
-          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Accumulated Dep</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Depreciación Acumulada</span>
           <div class="flex items-baseline gap-1 mt-4">
             <span class="text-3xl font-extrabold text-rose-600 dark:text-rose-500/90 font-mono">-{{ totalAccumulatedDepreciation() }}</span>
           </div>
-          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Estimated lifetime depreciation value</p>
+          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Depreciación acumulada estimada</p>
         </div>
 
         <!-- KPI 4: Remaining Book Value -->
         <div class="bg-white dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-300/80 dark:hover:border-slate-700/60 shadow-xs ring-1 ring-emerald-500/20">
-          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-500">Current Net Book Value</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-500">Valor Neto en Libros Actual</span>
           <div class="flex items-baseline gap-1 mt-4">
             <span class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">{{ totalRemainingBookValue() }}</span>
           </div>
-          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Adjusted for current straight-line wear</p>
+          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Ajustado según amortización lineal</p>
         </div>
       </section>
 

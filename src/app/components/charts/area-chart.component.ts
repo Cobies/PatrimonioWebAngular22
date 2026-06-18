@@ -18,15 +18,15 @@ interface TooltipData {
     <div class="relative w-full h-full bg-white dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-slate-300 dark:hover:border-slate-700/80 shadow-xs">
       <div class="flex justify-between items-center mb-6">
         <div>
-          <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200 transition-colors duration-300">Depreciation Curve</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">Projected portfolio value over useful life</p>
+          <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200 transition-colors duration-300">Curva de Depreciación</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">Valor proyectado del portafolio a lo largo de la vida útil</p>
         </div>
       </div>
 
       <div class="relative flex-1 min-h-[220px] w-full" #chartContainer>
         @if (trajectory().length === 0) {
           <div class="flex flex-col items-center justify-center h-full text-slate-400 dark:text-slate-500 text-sm">
-            No assets available to calculate trajectory.
+            No hay activos disponibles para calcular la trayectoria.
           </div>
         } @else {
           <svg viewBox="0 0 500 300" class="w-full h-full select-none" preserveAspectRatio="xMidYMid meet">
@@ -84,7 +84,7 @@ interface TooltipData {
                 font-size="9"
                 text-anchor="middle"
               >
-                Yr {{ pt.year }}
+                Año {{ pt.year }}
               </text>
             }
 
@@ -138,13 +138,13 @@ interface TooltipData {
               [style.top.px]="data.y"
               class="absolute z-10 bg-white/95 dark:bg-slate-950/90 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 text-xs rounded-xl p-3 shadow-2xl backdrop-blur-md pointer-events-none transform -translate-x-1/2 -translate-y-full mb-3 transition-all duration-150"
             >
-              <div class="font-bold text-indigo-650 dark:text-indigo-400 mb-1">Timeline: Year {{ data.year }}</div>
+              <div class="font-bold text-indigo-650 dark:text-indigo-400 mb-1">Línea de tiempo: Año {{ data.year }}</div>
               <div class="flex items-center gap-2">
-                <span class="text-slate-500 dark:text-slate-400">Remaining Value:</span>
+                <span class="text-slate-500 dark:text-slate-400">Valor en Libros:</span>
                 <span class="font-mono text-slate-800 dark:text-slate-200 font-semibold">{{ data.formattedRemaining }}</span>
               </div>
               <div class="flex items-center gap-2 mt-0.5">
-                <span class="text-slate-500 dark:text-slate-400">Accumulated Dep:</span>
+                <span class="text-slate-500 dark:text-slate-400">Depreciación Acumulada:</span>
                 <span class="font-mono text-slate-500 dark:text-slate-400">{{ data.formattedAccumulated }}</span>
               </div>
             </div>

@@ -25,10 +25,10 @@ import { AssetFormComponent } from '../asset-form/asset-form.component';
             </div>
             <div>
               <h1 class="text-xl md:text-2xl font-extrabold text-slate-800 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-slate-100 dark:via-slate-200 dark:to-slate-400">
-                Asset Catalog
+                Catálogo de Activos
               </h1>
               <p class="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide">
-                Manage corporate physical and digital assets
+                Gestión de bienes físicos y digitales corporativos
               </p>
             </div>
           </div>
@@ -64,7 +64,7 @@ import { AssetFormComponent } from '../asset-form/asset-form.component';
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
             </svg>
-            Register Asset
+            Registrar Activo
           </button>
         </div>
       </header>
@@ -140,7 +140,7 @@ export class CatalogComponent {
   }
 
   onDeleteAsset(id: string): void {
-    if (confirm('Are you sure you want to delete this asset? This action is irreversible.')) {
+    if (confirm('¿Está seguro de que desea eliminar este activo? Esta acción es irreversible.')) {
       this.assetService.deleteAsset(id);
     }
   }
