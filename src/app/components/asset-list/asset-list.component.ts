@@ -5,12 +5,12 @@ import { Asset, Currency } from '../../models/asset.model';
   selector: 'app-asset-list',
   standalone: true,
   template: `
-    <div class="w-full bg-slate-900/60 backdrop-blur-md border border-slate-800 rounded-2xl p-6 flex flex-col gap-6 transition-all duration-300 hover:border-slate-700/60">
+    <div class="w-full bg-white dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col gap-6 transition-all duration-300 hover:border-slate-300 dark:hover:border-slate-700/60 shadow-xs">
       <!-- Search & Filters Header -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h3 class="text-lg font-bold text-slate-200">Asset Catalog</h3>
-          <p class="text-xs text-slate-400">Total: {{ assets().length }} assets registered</p>
+          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 transition-colors duration-300">Asset Catalog</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">Total: {{ assets().length }} assets registered</p>
         </div>
         
         <div class="flex flex-wrap items-center gap-3">
@@ -21,10 +21,10 @@ import { Asset, Currency } from '../../models/asset.model';
               placeholder="Search assets..."
               [value]="searchText()"
               (input)="onSearchInput($event)"
-              class="w-full sm:w-64 bg-slate-950/80 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-slate-700 focus:ring-1 focus:ring-slate-700 rounded-xl px-4 py-2.5 pl-10 text-sm transition-all"
+              class="w-full sm:w-64 bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-hidden focus:border-slate-300 dark:focus:border-slate-700 focus:ring-1 focus:ring-slate-300 dark:focus:ring-slate-700 rounded-xl px-4 py-2.5 pl-10 text-sm transition-all duration-300"
             />
             <svg
-              class="absolute left-3.5 top-3 h-4 w-4 text-slate-500"
+              class="absolute left-3.5 top-3 h-4 w-4 text-slate-400 dark:text-slate-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -44,14 +44,14 @@ import { Asset, Currency } from '../../models/asset.model';
             <select
               [value]="selectedCategory()"
               (change)="onCategoryChange($event)"
-              class="w-full sm:w-auto bg-slate-950/80 border border-slate-800 text-slate-300 focus:outline-none focus:border-slate-700 focus:ring-1 focus:ring-slate-700 rounded-xl px-3.5 py-2.5 text-sm transition-all cursor-pointer appearance-none pr-8"
+              class="w-full sm:w-auto bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 focus:outline-hidden focus:border-slate-300 dark:focus:border-slate-700 focus:ring-1 focus:ring-slate-300 dark:focus:ring-slate-700 rounded-xl px-3.5 py-2.5 text-sm transition-all duration-300 cursor-pointer appearance-none pr-8"
             >
               @for (cat of categories(); track cat) {
                 <option [value]="cat">{{ cat }}</option>
               }
             </select>
             <svg
-              class="absolute right-3.5 top-3.5 h-4.5 w-4.5 text-slate-500 pointer-events-none"
+              class="absolute right-3.5 top-3.5 h-4.5 w-4.5 text-slate-400 dark:text-slate-500 pointer-events-none"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -64,10 +64,10 @@ import { Asset, Currency } from '../../models/asset.model';
       </div>
 
       <!-- Table Section -->
-      <div class="overflow-x-auto w-full rounded-xl border border-slate-800/80">
+      <div class="overflow-x-auto w-full rounded-xl border border-slate-200 dark:border-slate-800/80 transition-colors duration-300">
         <table class="w-full text-left border-collapse">
           <thead>
-            <tr class="border-b border-slate-800 bg-slate-950/40 text-slate-400 text-xs font-semibold uppercase tracking-wider">
+            <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40 text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider transition-colors duration-300">
               <th class="py-4 px-5">Name & Type</th>
               <th class="py-4 px-5">Category</th>
               <th class="py-4 px-5">Acquisition</th>
@@ -77,34 +77,34 @@ import { Asset, Currency } from '../../models/asset.model';
               <th class="py-4 px-5 text-center">Actions</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60 text-slate-300 text-sm">
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800/60 text-slate-600 dark:text-slate-300 text-sm transition-colors duration-300">
             @if (filteredAssets().length === 0) {
               <tr>
-                <td colspan="7" class="py-12 text-center text-slate-500">
+                <td colspan="7" class="py-12 text-center text-slate-400 dark:text-slate-500 transition-colors duration-300">
                   No assets found matching the criteria.
                 </td>
               </tr>
             } @else {
               @for (asset of filteredAssets(); track asset.id) {
-                <tr class="hover:bg-slate-800/20 transition-colors group">
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors duration-300 group">
                   <!-- Name & Type -->
                   <td class="py-4 px-5">
                     <div class="flex flex-col">
-                      <span class="font-medium text-slate-200 group-hover:text-slate-100 transition-colors">
+                      <span class="font-medium text-slate-800 dark:text-slate-200 group-hover:text-slate-950 dark:group-hover:text-slate-100 transition-colors duration-300">
                         {{ asset.name }}
                       </span>
                       <div class="flex items-center gap-2 mt-1">
                         @if (asset.type === 'physical') {
-                          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 dark:border-emerald-500/20 transition-colors duration-300">
                             Physical
                           </span>
                         } @else {
-                          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 dark:border-indigo-500/20 transition-colors duration-300">
                             Digital
                           </span>
                         }
                         @if (asset.serialNumber) {
-                          <span class="text-[10px] text-slate-500 font-mono">SN: {{ asset.serialNumber }}</span>
+                          <span class="text-[10px] text-slate-400 dark:text-slate-500 font-mono transition-colors duration-300">SN: {{ asset.serialNumber }}</span>
                         }
                       </div>
                     </div>
@@ -112,26 +112,26 @@ import { Asset, Currency } from '../../models/asset.model';
                   
                   <!-- Category -->
                   <td class="py-4 px-5">
-                    <span class="text-slate-400">{{ asset.category }}</span>
+                    <span class="text-slate-500 dark:text-slate-400 transition-colors duration-300">{{ asset.category }}</span>
                   </td>
                   
                   <!-- Acquisition Date -->
                   <td class="py-4 px-5">
                     <div class="flex flex-col">
-                      <span class="text-slate-300">{{ asset.purchaseDate }}</span>
+                      <span class="text-slate-600 dark:text-slate-300 transition-colors duration-300">{{ asset.purchaseDate }}</span>
                       @if (asset.location) {
-                        <span class="text-[11px] text-slate-500">{{ asset.location }}</span>
+                        <span class="text-[11px] text-slate-400 dark:text-slate-500 transition-colors duration-300">{{ asset.location }}</span>
                       }
                     </div>
                   </td>
                   
                   <!-- Purchase Value -->
-                  <td class="py-4 px-5 text-right font-mono font-medium text-slate-200">
+                  <td class="py-4 px-5 text-right font-mono font-medium text-slate-800 dark:text-slate-200 transition-colors duration-300">
                     {{ formatCurrency(asset.purchaseValue) }}
                   </td>
                   
                   <!-- Residual Value -->
-                  <td class="py-4 px-5 text-right font-mono text-slate-400">
+                  <td class="py-4 px-5 text-right font-mono text-slate-500 dark:text-slate-400 transition-colors duration-300">
                     {{ formatCurrency(asset.residualValue) }}
                   </td>
                   
@@ -146,7 +146,7 @@ import { Asset, Currency } from '../../models/asset.model';
                       <button
                         (click)="editAsset.emit(asset)"
                         title="Edit Asset"
-                        class="p-1.5 rounded-lg bg-slate-800/40 border border-slate-700/50 hover:bg-indigo-500/10 hover:border-indigo-500/30 text-slate-400 hover:text-indigo-400 transition-all cursor-pointer"
+                        class="p-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/50 hover:bg-indigo-500/10 hover:border-indigo-500/30 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 cursor-pointer"
                       >
                         <svg
                           class="h-4 w-4"
@@ -165,7 +165,7 @@ import { Asset, Currency } from '../../models/asset.model';
                       <button
                         (click)="deleteAsset.emit(asset.id)"
                         title="Delete Asset"
-                        class="p-1.5 rounded-lg bg-slate-800/40 border border-slate-700/50 hover:bg-rose-500/10 hover:border-rose-500/30 text-slate-400 hover:text-rose-400 transition-all cursor-pointer"
+                        class="p-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/50 hover:bg-rose-500/10 hover:border-rose-500/30 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition-all duration-300 cursor-pointer"
                       >
                         <svg
                           class="h-4 w-4"

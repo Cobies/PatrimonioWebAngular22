@@ -10,8 +10,8 @@ describe('AssetService', () => {
     store = {};
     
     // Mock LocalStorage
-    spyOn(localStorage, 'getItem').and.callFake((key: string) => store[key] || null);
-    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string) => {
+    vi.spyOn(localStorage, 'getItem').mockImplementation((key: string) => store[key] || null);
+    vi.spyOn(localStorage, 'setItem').mockImplementation((key: string, value: string) => {
       store[key] = value;
     });
 

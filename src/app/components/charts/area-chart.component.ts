@@ -15,17 +15,17 @@ interface TooltipData {
   selector: 'app-area-chart',
   standalone: true,
   template: `
-    <div class="relative w-full h-full bg-slate-900/60 backdrop-blur-md border border-slate-800 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-slate-700/80">
+    <div class="relative w-full h-full bg-white dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-slate-300 dark:hover:border-slate-700/80 shadow-xs">
       <div class="flex justify-between items-center mb-6">
         <div>
-          <h3 class="text-base font-semibold text-slate-200">Depreciation Curve</h3>
-          <p class="text-xs text-slate-400">Projected portfolio value over useful life</p>
+          <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200 transition-colors duration-300">Depreciation Curve</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">Projected portfolio value over useful life</p>
         </div>
       </div>
 
       <div class="relative flex-1 min-h-[220px] w-full" #chartContainer>
         @if (trajectory().length === 0) {
-          <div class="flex flex-col items-center justify-center h-full text-slate-500 text-sm">
+          <div class="flex flex-col items-center justify-center h-full text-slate-400 dark:text-slate-500 text-sm">
             No assets available to calculate trajectory.
           </div>
         } @else {
@@ -49,17 +49,17 @@ interface TooltipData {
                 [attr.y1]="yScale(yVal)"
                 x2="480"
                 [attr.y2]="yScale(yVal)"
-                stroke="#1e293b"
+                class="stroke-slate-200 dark:stroke-slate-800/80 transition-colors duration-300"
                 stroke-dasharray="3,3"
                 stroke-width="1"
               />
               <text
                 x="50"
                 [attr.y]="yScale(yVal) + 4"
-                fill="#64748b"
+                fill="currentColor"
+                class="text-slate-400 dark:text-slate-500 font-mono transition-colors duration-300"
                 font-size="10"
                 text-anchor="end"
-                class="font-mono"
               >
                 {{ formatCurrencyShort(yVal) }}
               </text>
@@ -72,17 +72,17 @@ interface TooltipData {
                 y1="20"
                 [attr.x2]="xScale(pt.year)"
                 y2="250"
-                stroke="#1e293b"
+                class="stroke-slate-200 dark:stroke-slate-800/80 transition-colors duration-300"
                 stroke-dasharray="3,3"
                 stroke-width="1"
               />
               <text
                 [attr.x]="xScale(pt.year)"
                 y="270"
-                fill="#64748b"
+                fill="currentColor"
+                class="text-slate-400 dark:text-slate-500 font-medium transition-colors duration-300"
                 font-size="9"
                 text-anchor="middle"
-                class="font-medium"
               >
                 Yr {{ pt.year }}
               </text>
@@ -136,16 +136,16 @@ interface TooltipData {
             <div 
               [style.left.px]="data.x"
               [style.top.px]="data.y"
-              class="absolute z-10 bg-slate-950/90 border border-slate-700/80 text-slate-100 text-xs rounded-xl p-3 shadow-2xl backdrop-blur-md pointer-events-none transform -translate-x-1/2 -translate-y-full mb-3 transition-all duration-150"
+              class="absolute z-10 bg-white/95 dark:bg-slate-950/90 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 text-xs rounded-xl p-3 shadow-2xl backdrop-blur-md pointer-events-none transform -translate-x-1/2 -translate-y-full mb-3 transition-all duration-150"
             >
-              <div class="font-bold text-indigo-400 mb-1">Timeline: Year {{ data.year }}</div>
+              <div class="font-bold text-indigo-650 dark:text-indigo-400 mb-1">Timeline: Year {{ data.year }}</div>
               <div class="flex items-center gap-2">
-                <span class="text-slate-400">Remaining Value:</span>
-                <span class="font-mono text-slate-200 font-semibold">{{ data.formattedRemaining }}</span>
+                <span class="text-slate-500 dark:text-slate-400">Remaining Value:</span>
+                <span class="font-mono text-slate-800 dark:text-slate-200 font-semibold">{{ data.formattedRemaining }}</span>
               </div>
               <div class="flex items-center gap-2 mt-0.5">
-                <span class="text-slate-400">Accumulated Dep:</span>
-                <span class="font-mono text-slate-400">{{ data.formattedAccumulated }}</span>
+                <span class="text-slate-500 dark:text-slate-400">Accumulated Dep:</span>
+                <span class="font-mono text-slate-500 dark:text-slate-400">{{ data.formattedAccumulated }}</span>
               </div>
             </div>
           }

@@ -13,17 +13,17 @@ interface TooltipData {
   selector: 'app-bar-chart',
   standalone: true,
   template: `
-    <div class="relative w-full h-full bg-slate-900/60 backdrop-blur-md border border-slate-800 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-slate-700/80">
+    <div class="relative w-full h-full bg-white dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-slate-300 dark:hover:border-slate-700/80 shadow-xs">
       <div class="flex justify-between items-center mb-6">
         <div>
-          <h3 class="text-base font-semibold text-slate-200">Asset Distribution</h3>
-          <p class="text-xs text-slate-400">Purchase valuation grouped by category</p>
+          <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200 transition-colors duration-300">Asset Distribution</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">Purchase valuation grouped by category</p>
         </div>
       </div>
 
       <div class="relative flex-1 min-h-[220px] w-full" #chartContainer>
         @if (bars().length === 0) {
-          <div class="flex flex-col items-center justify-center h-full text-slate-500 text-sm">
+          <div class="flex flex-col items-center justify-center h-full text-slate-400 dark:text-slate-500 text-sm">
             No assets available to chart.
           </div>
         } @else {
@@ -47,17 +47,17 @@ interface TooltipData {
                 [attr.y1]="yScale(yVal)"
                 x2="480"
                 [attr.y2]="yScale(yVal)"
-                stroke="#1e293b"
+                class="stroke-slate-200 dark:stroke-slate-800/80 transition-colors duration-300"
                 stroke-dasharray="3,3"
                 stroke-width="1"
               />
               <text
                 x="50"
                 [attr.y]="yScale(yVal) + 4"
-                fill="#64748b"
+                fill="currentColor"
+                class="text-slate-400 dark:text-slate-500 font-mono transition-colors duration-300"
                 font-size="10"
                 text-anchor="end"
-                class="font-mono"
               >
                 {{ formatCurrencyShort(yVal) }}
               </text>
@@ -94,10 +94,10 @@ interface TooltipData {
                 <text
                   [attr.x]="bar.x + bar.width / 2"
                   y="270"
-                  fill="#94a3b8"
+                  fill="currentColor"
+                  class="text-slate-500 dark:text-slate-400 font-medium tracking-wide transition-colors duration-300"
                   font-size="9"
                   text-anchor="middle"
-                  class="font-medium tracking-wide"
                 >
                   {{ truncateLabel(bar.category) }}
                 </text>
@@ -110,16 +110,16 @@ interface TooltipData {
             <div 
               [style.left.px]="data.x"
               [style.top.px]="data.y"
-              class="absolute z-10 bg-slate-950/90 border border-slate-700/80 text-slate-100 text-xs rounded-xl p-3 shadow-2xl backdrop-blur-md pointer-events-none transform -translate-x-1/2 -translate-y-full mb-3 transition-all duration-150"
+              class="absolute z-10 bg-white/95 dark:bg-slate-950/90 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 text-xs rounded-xl p-3 shadow-2xl backdrop-blur-md pointer-events-none transform -translate-x-1/2 -translate-y-full mb-3 transition-all duration-150"
             >
-              <div class="font-bold text-emerald-400 mb-0.5">{{ data.category }}</div>
+              <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-0.5">{{ data.category }}</div>
               <div class="flex items-center gap-2">
-                <span class="text-slate-400">Total Value:</span>
-                <span class="font-mono text-slate-200">{{ data.formattedValue }}</span>
+                <span class="text-slate-500 dark:text-slate-400">Total Value:</span>
+                <span class="font-mono text-slate-800 dark:text-slate-200">{{ data.formattedValue }}</span>
               </div>
-              <div class="flex items-center gap-2 mt-0.5 text-[10px] text-slate-400">
+              <div class="flex items-center gap-2 mt-0.5 text-[10px] text-slate-500 dark:text-slate-400">
                 <span>Assets Count:</span>
-                <span class="font-mono font-medium">{{ data.count }}</span>
+                <span class="font-mono font-medium text-slate-700 dark:text-slate-300">{{ data.count }}</span>
               </div>
             </div>
           }

@@ -4,23 +4,19 @@ import { DepreciationService } from '../../services/depreciation.service';
 import { Asset, Currency } from '../../models/asset.model';
 import { BarChartComponent } from '../charts/bar-chart.component';
 import { AreaChartComponent } from '../charts/area-chart.component';
-import { AssetListComponent } from '../asset-list/asset-list.component';
-import { AssetFormComponent } from '../asset-form/asset-form.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
     BarChartComponent,
-    AreaChartComponent,
-    AssetListComponent,
-    AssetFormComponent
+    AreaChartComponent
   ],
   template: `
-    <div class="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-10 flex flex-col gap-8 font-sans">
+    <div class="flex flex-col gap-8 font-sans">
       
       <!-- Top Navigation & Global Controls -->
-      <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-slate-900 pb-6">
+      <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-slate-200 dark:border-slate-800/80 pb-6">
         <div>
           <div class="flex items-center gap-3">
             <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/10">
@@ -29,10 +25,10 @@ import { AssetFormComponent } from '../asset-form/asset-form.component';
               </svg>
             </div>
             <div>
-              <h1 class="text-xl md:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400">
+              <h1 class="text-xl md:text-2xl font-extrabold text-slate-800 dark:text-white">
                 Corporate Asset Manager
               </h1>
-              <p class="text-xs text-slate-400 font-medium tracking-wide">
+              <p class="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide">
                 Active Valuation & Straight-Line Depreciation Console
               </p>
             </div>
@@ -41,7 +37,7 @@ import { AssetFormComponent } from '../asset-form/asset-form.component';
 
         <div class="flex items-center gap-4">
           <!-- Currency Toggle -->
-          <div class="bg-slate-900/80 border border-slate-800 p-1.5 rounded-xl flex gap-1 shadow-inner">
+          <div class="bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 p-1.5 rounded-xl flex gap-1 shadow-inner transition-colors duration-300">
             @for (curr of currencies; track curr) {
               <button
                 (click)="onCurrencyToggle(curr)"
@@ -51,64 +47,55 @@ import { AssetFormComponent } from '../asset-form/asset-form.component';
                 [class.to-violet-600]="selectedCurrency() === curr"
                 [class.text-white]="selectedCurrency() === curr"
                 [class.shadow-md]="selectedCurrency() === curr"
-                [class.text-slate-400]="selectedCurrency() !== curr"
-                [class.hover:text-slate-200]="selectedCurrency() !== curr"
+                [class.text-slate-500]="selectedCurrency() !== curr"
+                [class.dark:text-slate-400]="selectedCurrency() !== curr"
+                [class.hover:text-slate-800]="selectedCurrency() !== curr"
+                [class.dark:hover:text-slate-200]="selectedCurrency() !== curr"
               >
                 {{ curr }}
               </button>
             }
           </div>
-
-          <!-- Add Asset Button -->
-          <button
-            (click)="onOpenCreateForm()"
-            class="px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/10 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer flex items-center gap-2"
-          >
-            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
-            </svg>
-            Register Asset
-          </button>
         </div>
       </header>
 
       <!-- KPI Metrics Dashboard -->
       <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- KPI 1: Active Count -->
-        <div class="bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-700/60">
-          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Asset Inventory</span>
+        <div class="bg-white dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-300/80 dark:hover:border-slate-700/60 shadow-xs">
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Asset Inventory</span>
           <div class="flex items-baseline gap-2 mt-4">
-            <span class="text-3xl font-extrabold text-slate-100 font-mono">{{ assetsCount() }}</span>
-            <span class="text-xs text-slate-400">active items</span>
+            <span class="text-3xl font-extrabold text-slate-900 dark:text-slate-100 font-mono">{{ assetsCount() }}</span>
+            <span class="text-xs text-slate-400 dark:text-slate-500">active items</span>
           </div>
-          <p class="text-[10px] text-slate-500 mt-2">Physical and digital assets tracked</p>
+          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Physical and digital assets tracked</p>
         </div>
 
         <!-- KPI 2: Total Acquisition Cost -->
-        <div class="bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-700/60">
-          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Capital Cost</span>
+        <div class="bg-white dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-300/80 dark:hover:border-slate-700/60 shadow-xs">
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Capital Cost</span>
           <div class="flex items-baseline gap-1 mt-4">
-            <span class="text-3xl font-extrabold text-slate-100 font-mono">{{ totalAcquisitionCost() }}</span>
+            <span class="text-3xl font-extrabold text-slate-900 dark:text-slate-100 font-mono">{{ totalAcquisitionCost() }}</span>
           </div>
-          <p class="text-[10px] text-slate-500 mt-2">Sum of original purchase costs</p>
+          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Sum of original purchase costs</p>
         </div>
 
         <!-- KPI 3: Accumulated Depreciation -->
-        <div class="bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-700/60">
-          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Accumulated Dep</span>
+        <div class="bg-white dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-300/80 dark:hover:border-slate-700/60 shadow-xs">
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Accumulated Dep</span>
           <div class="flex items-baseline gap-1 mt-4">
-            <span class="text-3xl font-extrabold text-rose-500/90 font-mono">-{{ totalAccumulatedDepreciation() }}</span>
+            <span class="text-3xl font-extrabold text-rose-600 dark:text-rose-500/90 font-mono">-{{ totalAccumulatedDepreciation() }}</span>
           </div>
-          <p class="text-[10px] text-slate-500 mt-2">Estimated lifetime depreciation value</p>
+          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Estimated lifetime depreciation value</p>
         </div>
 
         <!-- KPI 4: Remaining Book Value -->
-        <div class="bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-700/60 ring-1 ring-emerald-500/20">
-          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-500">Current Net Book Value</span>
+        <div class="bg-white dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:border-slate-300/80 dark:hover:border-slate-700/60 shadow-xs ring-1 ring-emerald-500/20">
+          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-500">Current Net Book Value</span>
           <div class="flex items-baseline gap-1 mt-4">
-            <span class="text-3xl font-extrabold text-emerald-400 font-mono">{{ totalRemainingBookValue() }}</span>
+            <span class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">{{ totalRemainingBookValue() }}</span>
           </div>
-          <p class="text-[10px] text-slate-500 mt-2">Adjusted for current straight-line wear</p>
+          <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-2">Adjusted for current straight-line wear</p>
         </div>
       </section>
 
@@ -126,29 +113,6 @@ import { AssetFormComponent } from '../asset-form/asset-form.component';
         />
       </section>
 
-      <!-- Catalog List Section -->
-      <section>
-        <app-asset-list
-          [assets]="assets()"
-          [selectedCurrency]="selectedCurrency()"
-          [convertFn]="convertHelper"
-          (editAsset)="onOpenEditForm($event)"
-          (deleteAsset)="onDeleteAsset($event)"
-        />
-      </section>
-
-      <!-- Overlay Asset Form Modal -->
-      @if (isFormOpen()) {
-        <app-asset-form
-          [asset]="selectedAsset()"
-          [selectedCurrency]="selectedCurrency()"
-          [convertFn]="convertHelper"
-          [convertToUsdFn]="convertToUsdHelper"
-          (save)="onSaveAsset($event)"
-          (cancel)="onCloseForm()"
-        />
-      }
-
     </div>
   `
 })
@@ -162,13 +126,8 @@ export class DashboardComponent {
   assets = this.assetService.assets;
   selectedCurrency = this.assetService.selectedCurrency;
 
-  // Modal form toggle signals
-  isFormOpen = signal<boolean>(false);
-  selectedAsset = signal<Asset | null>(null);
-
   // Conversion helpers bindable to inputs
   convertHelper = (usdVal: number) => this.assetService.convert(usdVal);
-  convertToUsdHelper = (val: number, fromCurrency: Currency) => this.assetService.convertToUsd(val, fromCurrency);
 
   // KPIs
   assetsCount = computed(() => this.assets().length);
@@ -193,36 +152,6 @@ export class DashboardComponent {
 
   onCurrencyToggle(currency: Currency): void {
     this.assetService.selectedCurrency.set(currency);
-  }
-
-  onOpenCreateForm(): void {
-    this.selectedAsset.set(null);
-    this.isFormOpen.set(true);
-  }
-
-  onOpenEditForm(asset: Asset): void {
-    this.selectedAsset.set(asset);
-    this.isFormOpen.set(true);
-  }
-
-  onCloseForm(): void {
-    this.isFormOpen.set(false);
-    this.selectedAsset.set(null);
-  }
-
-  onSaveAsset(assetData: Omit<Asset, 'id'> | Asset): void {
-    if ('id' in assetData) {
-      this.assetService.updateAsset(assetData.id, assetData as Asset);
-    } else {
-      this.assetService.addAsset(assetData);
-    }
-    this.onCloseForm();
-  }
-
-  onDeleteAsset(id: string): void {
-    if (confirm('Are you sure you want to delete this asset? This action is irreversible.')) {
-      this.assetService.deleteAsset(id);
-    }
   }
 
   /**
