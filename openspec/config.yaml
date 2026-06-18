@@ -1,0 +1,32 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Tech stack: Angular v22.0.0, Bun, Tailwind CSS v4, PostCSS, TypeScript
+  Architecture: Standalone component architecture, Signal-driven state (v22), Container-Presentational
+  Testing: Vitest (via @angular/build:unit-test), currently disabled locally due to env compatibility blocks (Bun + Win EBADFD)
+  Style: Tailwind CSS v4, modern minimalist/dark/glassmorphism aesthetics
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Offer a proposal question round to clarify business rules
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Document architecture decisions with rationale
+    - Document signal-driven state models and service inputs/outputs
+  tasks:
+    - Group by phase, use hierarchical numbering
+    - Keep tasks completable in one session
+  apply:
+    - Follow existing code patterns
+    - tdd: false
+    - test_command: ""
+  verify:
+    - test_command: ""
+    - build_command: "bun run build"
+    - coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas
